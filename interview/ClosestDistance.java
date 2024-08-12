@@ -1,5 +1,7 @@
 package interview;
 
+import java.util.NoSuchElementException;
+
 public class ClosestDistance {
     public static void main(String[] args) {
         String text = "The Paris Olympics opened with rain on its parade, then blistering "
@@ -36,7 +38,7 @@ public class ClosestDistance {
         }
 
         if (minDistance == Integer.MAX_VALUE) {
-            throw new IllegalArgumentException("Word not found");
+            throw new NoSuchElementException("Word not found");
         }
 
         return minDistance;
