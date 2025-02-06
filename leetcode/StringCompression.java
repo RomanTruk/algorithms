@@ -7,29 +7,27 @@ public class StringCompression {
     }
 
     private static int compress(char[] chars) {
-        if (chars.length == 1) {
-            return 1;
-        }
-
+        int write = 0;
         int index = 0;
-        int groupCount = 1;
 
-        for (int i = 1; i <= chars.length; i++) {
-            if (i == chars.length || chars[i - 1] != chars[i]) {
-                chars[index++] = chars[i - 1];
+        while(index < chars.length) {
+            char currentChar = chars[index];
+            int count = 0;
 
-                if (groupCount > 1) {
-                    String countStr = String.valueOf(groupCount);
-                    for (char c : countStr.toCharArray()) {
-                        chars[index++] = c;
-                    }
+            while (index < chars.length && chars[index] == currentChar) {
+                count++;
+                index++;
+            }
+
+            chars[write++] = currentChar;
+
+            if (count > 1) {
+                for (char c : String.valueOf(count).toCharArray()) {
+                    chars[write++] = c;
                 }
-                groupCount = 1;
-            } else {
-                groupCount++;
             }
         }
 
-        return index;
+        return write;
     }
 }
