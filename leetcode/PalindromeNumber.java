@@ -8,12 +8,28 @@ public class PalindromeNumber {
 
     private static boolean isPalindrome(int x) {
         String num = String.valueOf(x);
-        StringBuilder stringBuilder = new StringBuilder();
+        int left = 0;
+        int right = num.length() - 1;
 
-        for (int i = num.length() - 1; i >= 0; i--) {
-            stringBuilder.append(num.charAt(i));
+        while (left < right) {
+            if (num.charAt(left) != num.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
         }
 
-        return num.contentEquals(stringBuilder);
+        return true;
     }
+
+//    private static boolean isPalindrome(int x) {
+//        String num = String.valueOf(x);
+//        StringBuilder stringBuilder = new StringBuilder();
+//
+//        for (int i = num.length() - 1; i >= 0; i--) {
+//            stringBuilder.append(num.charAt(i));
+//        }
+//
+//        return num.contentEquals(stringBuilder);
+//    }
 }
